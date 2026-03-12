@@ -16,7 +16,7 @@ public class Combat {
                     LevelManager.upgradeLevel(mob.getValue(), atackingCharacter);
                     return;
                 }
-                System.out.println("[DEBUG] Failed to cast character.");
+                System.out.println("[DEBUG] Failed to cast character (combat).");
             }
             return;
         }

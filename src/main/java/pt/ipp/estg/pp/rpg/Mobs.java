@@ -7,7 +7,7 @@ public class Mobs extends Character{
     private mobType mobType;
     private int value; //1-5 1 is low value, 5 is high value.
 
-    public Mobs(String name, mobType mobType, CombatType combatType, int value){
+    public Mobs(String name, mobType mobType, int value){
         super(name);
         this.mobType = mobType;
         this.value = value;

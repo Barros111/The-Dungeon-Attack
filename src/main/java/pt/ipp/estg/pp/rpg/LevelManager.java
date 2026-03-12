@@ -21,7 +21,10 @@ public class LevelManager {
                 System.out.println("Current level: "+ player.getLevel());
                 return;
             }
+
+            player.setXp(finalXp);
+            return;
         }
-        System.out.println("[DEBUG] Failed to cast character.");
+        System.out.println("[DEBUG] Failed to cast character (lvl manager).");
     }
 }

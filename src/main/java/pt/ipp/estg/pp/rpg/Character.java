@@ -81,7 +81,7 @@ public class Character {
         healthPoints -= damage;
 
         if (healthPoints <= 0){
-            System.out.println(this.name + "has died!");
+            System.out.println(name + " has died!");
             changeState();
         }
     }
