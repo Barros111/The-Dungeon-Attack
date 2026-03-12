@@ -78,7 +78,7 @@ public class Character {
 
     public void receiveDamage(int damage){
         int realDamage = Math.max(0, damage-defense);
-        healthPoints -= damage;
+        healthPoints -= realDamage;
 
         if (healthPoints <= 0){
             System.out.println(name + " has died!");
