@@ -3,7 +3,7 @@ package pt.ipp.estg.pp.rpg;
 import java.util.Random;
 
 public class Spell {
-    public enum Spells{Fireball, Zap}
+    public enum Spells{Fireball, Zap};
 
     private Spells spellName;
     private int spellDamage;
@@ -15,10 +15,6 @@ public class Spell {
 
     public Spells getSpellName(){
         return spellName;
-    }
-
-    public void setSpellName(Spells spellName){
-        this.spellName = spellName;
     }
 
     public void setSpellDamage(){
