@@ -5,20 +5,25 @@ package pt.ipp.estg.pp.rpg;
 public class Main {
     public static void main(String[] args) {
 
+        Mage mage = new Mage("Mage");
+        mage.setHealthPoints(100);
+        mage.setAtackDamage(20);
+        mage.setDefense(5);
+        Spell spell = new Spell(Spell.Spells.Fireball);
+
         MeleeUser player = new MeleeUser("Hero");
         player.setHealthPoints(100);
         player.setAtackDamage(20);
         player.setDefense(5);
 
-        Mobs goblin = new Mobs("Goblin", Mobs.mobType.Goblin, 10);
+        Mobs goblin = new Mobs("Goblin", 10);
         goblin.setHealthPoints(30);
         goblin.setAtackDamage(10);
         goblin.setDefense(2);
         goblin.setCombatType(CombatType.CloseRange);
 
-        Combat combat = new Combat();
-        combat.combatShift(player, goblin);
-        combat.combatShift(goblin, player);
+        mage.combatShift(goblin, spell);
+        goblin.combatShift(mage);
 
         System.out.println("Player LVL: " + player.getLevel());
         System.out.println("Player XP: " + player.getXp());

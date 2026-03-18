@@ -23,4 +23,8 @@ public class Spell {
             case Zap -> this.spellDamage = random.nextInt((12-5) + 1)+5;
         }
     }
+
+    public int getSpellDamage(){
+        return spellDamage;
+    }
 }

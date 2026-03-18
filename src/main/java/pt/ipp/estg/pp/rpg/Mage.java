@@ -4,18 +4,11 @@ public class Mage extends Player{
 
     private static final int MAX_SPELLS = 2;
     private int spellBookLevel; //1-5
-    private Spell[] spells = new Spell[MAX_SPELLS];
-    private int[] spellUsage = new int[MAX_SPELLS];
 
     public Mage(String name){
         super(name);
         this.spellBookLevel = 1;
         setCombatType(CombatType.MidRange);
-
-        spells[0] = new Spell(Spell.Spells.Fireball);
-        spellUsage[0] = 4;
-        spells[1] = new Spell(Spell.Spells.Zap);
-        spellUsage[1] = 8;
     }
 
     public int getSpellBookLevel(){
@@ -24,5 +17,30 @@ public class Mage extends Player{
 
     public void setSpellBookLevel(int spellBookLevel){
         this.spellBookLevel = spellBookLevel;
+    }
+
+
+    public void combatShift(Character defendingCharacter, Spell spell){
+        spell.setSpellDamage();
+        float initialDamage = spell.getSpellDamage();
+        System.out.println("Used " + spell.getSpellName());
+        int finalDamage;
+        if(getCharacterType() == CharacterType.Player){
+            initialDamage *= damageMultiplier(defendingCharacter);
+            finalDamage= Math.round(initialDamage);
+            defendingCharacter.receiveDamage(finalDamage);
+
+            if(!defendingCharacter.isAlive()){
+                if(defendingCharacter instanceof Mobs){
+                    Mobs mob = (Mobs) defendingCharacter;
+                    LevelManager.upgradeLevel(mob.getValue(), this);
+                    return;
+                }
+                System.out.println("[DEBUG] Failed to cast character (combat).");
+            }
+            return;
+        }
+        finalDamage = Math.round(initialDamage);
+        defendingCharacter.receiveDamage(finalDamage);
     }
 }

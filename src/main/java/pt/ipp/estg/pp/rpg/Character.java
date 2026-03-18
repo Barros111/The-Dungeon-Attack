@@ -85,4 +85,35 @@ public class Character {
             changeState();
         }
     }
+
+    public void combatShift(Character defendingCharacter){
+        float initialDamage = getAtackDamage();
+        int finalDamage;
+        if(getCharacterType() == CharacterType.Player){
+            initialDamage *= damageMultiplier(defendingCharacter);
+            finalDamage= Math.round(initialDamage);
+            defendingCharacter.receiveDamage(finalDamage);
+
+            if(!defendingCharacter.isAlive()){
+                if(defendingCharacter instanceof Mobs){
+                    Mobs mob = (Mobs) defendingCharacter;
+                    LevelManager.upgradeLevel(mob.getValue(), this);
+                    return;
+                }
+                System.out.println("[DEBUG] Failed to cast character (combat).");
+            }
+            return;
+        }
+        finalDamage = Math.round(initialDamage);
+        defendingCharacter.receiveDamage(finalDamage);
+    }
+
+    public float damageMultiplier(Character defendingCharacter){
+        if(getCombatType() == defendingCharacter.getCombatType()){
+            return 1.5f;
+        }
+
+        return 0.5f;
+    }
+
 }
